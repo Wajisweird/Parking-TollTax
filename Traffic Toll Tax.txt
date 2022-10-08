@@ -1,0 +1,160 @@
+#include <iostream>
+#include <cstring>
+#include <string>
+#include<string.h>
+#include <ctime>
+using namespace std;
+
+struct Traffic               \\Using both functions and structures.
+{
+    string owner, vehichletype, model, plateno;
+    int CNIC;
+    int fare;
+    int ref = 1001;
+    time_t now = time(0);
+    char *dt = ctime(&now);
+};
+
+void CheckIn(Traffic t2)
+{
+    char fare;
+    int fr;
+    cout<<" Owner Name: ";
+    cin>>t2.owner;
+    fflush(stdin);
+    cout<<" Vehicle Type: ";
+    cin>>t2.vehichletype;
+    cout<<" CNIC Number( With '-' or without '-'): ";
+    cin>>t2.CNIC;
+    fflush(stdin);
+    cout<<" Model: ";
+    cin>>t2.model;
+    fflush(stdin);
+    cout<<" Plate Number: ";
+    cin>>t2.plateno;
+    fflush(stdin);
+    cout<<" Fare: Rs. ";
+    cin>>fr;
+    cout<<"TAX Paid?"<<endl;
+    cin>>fare;
+    if( fare == 'y' || fare == 'Y' )
+    {
+        cout<<" Rs. "<<fr<<" Paid."<<endl;
+        cout<<" \t\t\t\t\tCheck-In Time: "<<t2.dt<<endl;
+        cout<<" Reference Number: "<<++t2.ref<<endl;
+    }
+    else if( fare == 'n' || fare == 'N' )
+    {
+        cout<<" Rs. "<<fr<<"Not Paid. Please pay first to get a permission of a parking."<<endl;
+    }
+    else
+    {
+        cout<<" Operation Terminated"<<endl;
+    }
+    
+}
+
+void Checkout(Traffic t3)
+{
+    int refno;
+    char ref;
+    cout<<" Owner Name: ";
+    cin>>t3.owner;
+    fflush(stdin);
+    cout<<" Vehicle Type: ";
+    cin>>t3.vehichletype;
+    cout<<" CNIC Number( With '-' or without '-'): ";
+    cin>>t3.CNIC;
+    fflush(stdin);
+    cout<<" Model: ";
+    cin>>t3.model;
+    fflush(stdin);
+    cout<<" Plate Number: ";
+    cin>>t3.plateno;
+    fflush(stdin);
+    cout<<" Reference Number: "<<endl;  
+    cin>>refno;
+    cout<<" Allowed to exit"<<endl;
+    cin>>ref;
+    if( ref == 'y' || ref == 'Y' )
+    {
+        cout<<" \t\t\t\t\tCheck-Out Time: "<<t3.dt<<endl;
+    }
+    else if( ref == 'n' || ref == 'N' )
+    {
+        cout<<" Not allowed until vehicle owner returns the ticket"<<endl;
+    }
+    else
+    {
+        cout<<" Operation Terminated"<<endl;
+    }
+}
+
+void Complaint(Traffic t4)
+{
+    char comp;
+    cout<<" What's your complaint? Please feel free to tell us by simply dropping a message or calling us on our helpline."<<endl;
+    cin>>comp;
+    fflush(stdin);
+    cout<<" Please asnwere some of our questions listed bewlow"<<endl;
+    cout<<" Owner Name: ";
+    cin>>t4.owner;
+    fflush(stdin);
+    cout<<" Vehicle Type: ";
+    cin>>t4.vehichletype;
+    cout<<" CNIC Number( With '-' or without '-')";
+    cin>>t4.CNIC;
+    fflush(stdin);
+    cout<<" Model: ";
+    cin>>t4.model;
+    fflush(stdin);
+    cout<<" Plate Number: ";
+    cin>>t4.plateno;
+    fflush(stdin);
+    cout<<"Submit your complaint?"<<endl;
+    cin>>comp;
+    if( comp == 'y' || comp == 'y' )
+    {
+        cout<<"\n Our representative will be in touch with you soon."<<endl;
+    }
+    else if( comp == 'n' || comp == 'N' )
+    {
+        cout<<"\n Your complaint is not Submitted"<<endl;
+    }
+    else
+    {
+        cout<<" Please select a correct option."<<endl;
+    }
+
+    cout<<" \nYour complaint is sent to headquarter. Thansk for letting us know."<<endl;
+}
+int main()
+{
+    Traffic T0;
+    for(int i = 1; i <100; ++i )
+    {
+        int  user;
+        cout<<"\t\t\t\t\t\tTRAFFIC LOGIN SURVEY."<<endl;
+        cout<<endl;
+        cout<<" >> VEHICLE CHECK-IN."<<endl;
+        cout<<" >> VEHICLE CHECK-OUT."<<endl;
+        cout<<" >> COMPLAINT CELL."<<endl;
+        cin>>user;
+        if( user == 1 )
+        CheckIn(T0);
+        // show(&CheckIn);
+        else if( user == 2 )
+        {
+            Checkout(T0);
+        }
+        // show(&CheckOut);
+        else if( user == 3 )
+        Complaint(T0);
+        // show(&Complaint);
+        else
+       {
+            cout<<"Please select an available option"<<endl;
+       }
+       return 0;
+    }
+}
